@@ -8,5 +8,6 @@
 
 ForEach($user in (Import-CSV -path c:\input.csv)){
   $email = $user.email
-  Get-ADuser -Filter {(EmailAddress -eq $email)} -properties Enabled, passwordlastset, passwordneverexpires |select Name, Enabled, passwordlastset, Passwordneverexpires | Export-CSV -path c:\output.csv
+  Get-ADuser -Filter {(EmailAddress -eq $email)} -properties Enabled, passwordlastset, passwordneverexpires |select Name, Enabled, passwordlastset, Passwordneverexpires | Export-CSV -path c:\output.csv -Encoding ascii -NoTypeInformation -Append
 }
+
